@@ -1,10 +1,33 @@
 import md5 from "blueimp-md5";
-import { composeApiUrl } from "./marvelHooks";
+import axios from "axios";
+import { useAsyncFn } from "react-use";
+import { composeApiUrl, useCharactersApi } from "./marvelHooks";
 import config from "../config";
+
+jest.mock("axios", () => ({
+  __esModule: true,
+  default: {
+    get: jest.fn().mockResolvedValue({ data: [1, 2, 3] }),
+  },
+}));
+
+jest.mock("react-use", () => ({
+  useAsyncFn: jest.fn(async (cb: any) => await cb()),
+}));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 test("blueimp-md5 should work properly", () => {
   const val = md5("1abcd1234");
   expect(val).toBe("ffd275c5130566a2916217b101f26150");
+});
+
+test("useCharactersApi should call axios and return data", async () => {
+  await useCharactersApi({ offset: 0, limit: 100 }, []);
+  expect(useAsyncFn).toHaveBeenCalled();
+  expect(axios.get).toHaveBeenCalled();
 });
 
 describe("composeApiUrl", () => {
