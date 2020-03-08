@@ -28,6 +28,9 @@ test("useCharactersApi should call axios and return data", async () => {
   await useCharactersApi({ offset: 0, limit: 100 }, []);
   expect(useAsyncFn).toHaveBeenCalled();
   expect(axios.get).toHaveBeenCalled();
+
+  const value = await (useAsyncFn as any).mock.results[0].value;
+  expect(value).toEqual([1, 2, 3]);
 });
 
 describe("composeApiUrl", () => {
