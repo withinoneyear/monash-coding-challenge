@@ -1,4 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To install all packages, node version has be >= 11.0
+
+## Linting and Formatting
+
+This code base heavily relies on VSCode, please install all recommended workspace extensions to enable auto-fix.
+All workspace settings and extensions are saved in .vscode folder
+Linting and formatting are handled by Prettier + ESlint
 
 ## Available Scripts
 
