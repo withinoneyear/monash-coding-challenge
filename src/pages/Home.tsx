@@ -50,7 +50,7 @@ export default () => {
       <header className={styles.header}>
         <p className={styles.title}>Characters</p>
         <SearchBox onChange={onSearch} />
-        <img src={logo} className="logo" alt="logo" />
+        <img src={logo} className={styles.logo} alt="logo" />
       </header>
       <div className={styles.body}>
         {characters && <Characters list={characters} />}

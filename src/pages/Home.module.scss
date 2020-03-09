@@ -41,20 +41,44 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
+  font: $font-text;
+  font-size: 16px;
   background-color: $color-lightgrey;
+
+  @include for-tablet {
+    position: fixed;
+    font-size: 20px;
+  }
+}
+
+.logo {
+  width: 72px;
+
+  @include for-desktop {
+    width: 130px;
+  }
 }
 
 .body {
-  margin-top: 80px;
+  margin-top: 20px;
   width: 100%;
   flex: 1;
+
+  @include for-tablet {
+    margin-top: 80;
+  }
 }
 
 .title {
   font: $font-header;
+  display: none;
   @include eyebrow;
+
+  @include for-desktop {
+    display: initial;
+  }
 }
 
 .infoBar {
