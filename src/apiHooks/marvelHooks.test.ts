@@ -35,7 +35,7 @@ test("useCharactersApi should call axios and return data", async () => {
 
 describe("composeApiUrl", () => {
   test("should not include ts and hash as paramters in url when MARVEL_PRIVATE_KEY is not provided", async () => {
-    process.env.MARVEL_PRIVATE_KEY = "";
+    process.env.REACT_APP_MARVEL_PRIVATE_KEY = "";
     const url = await composeApiUrl({ offset: 0, limit: 100 }, 1);
     expect(url).toBe(
       `${config.characterApi}?apiKey=${config.marvelPublickKey}&offset=0&limit=100`
@@ -43,7 +43,7 @@ describe("composeApiUrl", () => {
   });
 
   test("should include ts and hash as paramters in url when MARVEL_PRIVATE_KEY is provided", async () => {
-    process.env.MARVEL_PRIVATE_KEY = "123";
+    process.env.REACT_APP_MARVEL_PRIVATE_KEY = "123";
     const hash = md5(`1${config.marvelPrivateKey}${config.marvelPublickKey}`);
     const url = await composeApiUrl({ offset: 0, limit: 100 }, 1);
     expect(url).toBe(

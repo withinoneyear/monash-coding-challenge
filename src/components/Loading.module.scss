@@ -1,0 +1,22 @@
+@import "../styles/theme.scss";
+
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loaderBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: darkgray;
+  padding: 15px;
+  color: $color-red;
+}
