@@ -12,11 +12,11 @@ $font-header: 800 26px RobotoCondensed, $font-fallback;
 $font-title: 400 16px/1.1 RobotoCondensed Bold, $font-fallback;
 
 // breakpoints
-// @mixin for-mobile {
-//   @media (min-width: 576px) {
-//     @content;
-//   }
-// }
+@mixin for-mobile {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
 @mixin for-tablet {
   @media (min-width: 768px) {
     @content;
