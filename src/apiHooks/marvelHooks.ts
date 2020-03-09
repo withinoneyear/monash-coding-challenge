@@ -38,7 +38,9 @@ export function useCharactersApi(
     return {
       ...resp.data.data,
       results: resp.data.data.results.filter(
-        (x: any) => !x.thumbnail.path.endsWith("image_not_available")
+        (x: any) =>
+          !x.thumbnail.path.endsWith("image_not_available") &&
+          x.thumbnail.extension !== "gif"
       ),
     } as CharacterDataContainer;
   }, [pageInfo.offset, pageInfo.limit, filter, ...(deps || [])]);

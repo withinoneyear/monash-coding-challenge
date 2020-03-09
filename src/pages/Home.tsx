@@ -10,31 +10,37 @@ import Loading from "../components/Loading";
 
 export default () => {
   const limit = 100;
-  const [offset, setOffset] = useState(0);
+  const [lastOffset, setLastOffset] = useState(0);
+  const [lastCount, setLastCount] = useState(0);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [filter, setFilter] = useState();
-  const state = useCharactersApi({ offset, limit }, filter, []);
+  const state = useCharactersApi({ offset: lastOffset, limit }, filter, []);
 
   useEffect(() => {
     if (!state.loading && state.value) {
-      setOffset(state.value.offset);
+      setLastCount(state.value.count);
       if (state.value.offset === 0) {
         setCharacters(state.value.results);
       } else {
         setCharacters([...characters, ...state.value.results]);
       }
     }
-  }, [characters, state.loading, state.value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.loading, state.value]);
 
   const onSearch = useCallback(
     txt => {
       setFilter(txt);
-      setOffset(0);
+      setLastOffset(0);
     },
-    [setFilter, setOffset]
+    [setFilter, setLastOffset]
   );
 
-  const hasMore = state.value && state.value.total > state.value.offset;
+  const loadMore = useCallback(() => {
+    setLastOffset(lastCount + lastOffset);
+  }, [lastCount, lastOffset]);
+
+  const hasMore = state.value && state.value.count >= state.value.limit;
 
   return (
     <div className={styles.main}>
@@ -45,15 +51,22 @@ export default () => {
         <SearchBox onChange={onSearch} />
         <img src={logo} className="logo" alt="logo" />
       </header>
-      {characters && <Characters list={characters} />}
-      {hasMore && (
-        <div
-          className={cn(styles.loadMore, { loading: state.loading })}
-          onClick={() => {}}
-        >
-          Load More...
-        </div>
-      )}
+      <div className={styles.body}>
+        {characters && <Characters list={characters} />}
+        {hasMore && (
+          <div
+            className={cn(styles.loadMore, styles.infoBar, {
+              loading: state.loading,
+            })}
+            onClick={loadMore}
+          >
+            Load More...
+          </div>
+        )}
+        {!state.loading && (!characters || !characters.length) && (
+          <div className={styles.infoBar}>Not Found</div>
+        )}
+      </div>
     </div>
   );
 };

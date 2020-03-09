@@ -10,9 +10,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  background-color: #efefef;
 }
 
-.logo {
+.body {
+  margin-top: 80px;
+  width: 100%;
+  flex: 1;
 }
 
 .title {
@@ -20,18 +27,19 @@
   @include eyebrow;
 }
 
-.loadMore {
+.infoBar {
   display: flex;
   justify-content: center;
-  cursor: pointer;
   padding: 20px;
   margin-top: 20px;
+  background-color: #efefef;
+}
+
+.loadMore {
+  cursor: pointer;
 
   &:hover {
     background-color: $color-red;
     color: $color-white;
-  }
-
-  &.loading {
   }
 }
