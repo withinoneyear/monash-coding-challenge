@@ -1,5 +1,35 @@
 @import "../styles/theme.scss";
 
+@mixin eyebrow(
+  $width: 20px,
+  $before-top: -3px,
+  $before-left: calc(50%),
+  $after-top: calc(100% + 3px),
+  $after-left: calc(50% - 53px)
+) {
+  position: relative;
+  &:before,
+  &:after {
+    background-color: $color-orange;
+    content: "";
+    display: block;
+    height: 2px;
+    position: absolute;
+    transform: rotate(-45deg) skewX(45deg);
+    width: $width;
+  }
+  &:before {
+    left: $before-left;
+    top: $before-top;
+    transform-origin: left bottom;
+  }
+  &:after {
+    left: $after-left;
+    top: $after-top;
+    transform-origin: right top;
+  }
+}
+
 .main {
   width: 100%;
   display: flex;
@@ -13,7 +43,7 @@
   width: 100%;
   position: fixed;
   z-index: 1000;
-  background-color: #efefef;
+  background-color: $color-lightgrey;
 }
 
 .body {
@@ -32,14 +62,19 @@
   justify-content: center;
   padding: 20px;
   margin-top: 20px;
-  background-color: #efefef;
+  background-color: $color-lightgrey;
 }
 
 .loadMore {
   cursor: pointer;
 
   &:hover {
-    background-color: $color-red;
+    background-color: $color-darkgrey;
     color: $color-white;
   }
+}
+
+.error {
+  color: $color-white;
+  background-color: $color-red;
 }

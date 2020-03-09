@@ -32,6 +32,7 @@ export default () => {
     txt => {
       setFilter(txt);
       setLastOffset(0);
+      setCharacters([]);
     },
     [setFilter, setLastOffset]
   );
@@ -63,8 +64,15 @@ export default () => {
             Load More...
           </div>
         )}
-        {!state.loading && (!characters || !characters.length) && (
-          <div className={styles.infoBar}>Not Found</div>
+        {!state.loading &&
+          !state.error &&
+          (!characters || !characters.length) && (
+            <div className={styles.infoBar}>Not Found</div>
+          )}
+        {state.error && (
+          <div className={cn(styles.infoBar, styles.error)}>
+            Fetching failed!
+          </div>
         )}
       </div>
     </div>
