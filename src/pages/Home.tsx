@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import cn from "classnames";
 import styles from "./Home.module.scss";
-import logo from "../logo.svg";
+import logo from "../images/logo.svg";
 import Characters from "../components/Characters";
 import SearchBox from "../components/SearchBox";
 import { useCharactersApi } from "../apiHooks/marvelHooks";

@@ -1,0 +1,12 @@
+@import "../styles/theme.scss";
+
+.searchBox {
+  display: flex;
+  align-items: center;
+
+  > svg {
+    width: 16px;
+    color: darkgray;
+    margin: 5px;
+  }
+}
