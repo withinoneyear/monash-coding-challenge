@@ -14,7 +14,7 @@ export async function composeApiUrl(
   ts: number = Date.now()
 ) {
   let url = `${config.characterApi}?apikey=${config.marvelPublickKey}&offset=${pageInfo.offset}&limit=${pageInfo.limit}`;
-  if (filter) {
+  if (filter?.length) {
     url += `&nameStartsWith=${encodeURIComponent(filter)}`;
   }
   if (process.env.REACT_APP_MARVEL_PRIVATE_KEY) {
@@ -39,8 +39,8 @@ export function useCharactersApi(
       ...resp.data.data,
       results: resp.data.data.results.filter(
         (x: any) =>
-          !x.thumbnail.path.endsWith("image_not_available") &&
-          x.thumbnail.extension !== "gif"
+          !x.thumbnail?.path?.endsWith("image_not_available") &&
+          x.thumbnail?.extension !== "gif"
       ),
     } as CharacterDataContainer;
   }, [pageInfo.offset, pageInfo.limit, filter, ...(deps || [])]);
