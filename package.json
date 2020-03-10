@@ -50,6 +50,7 @@
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "react-scripts": "3.4.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "waait": "^1.0.5"
   }
 }

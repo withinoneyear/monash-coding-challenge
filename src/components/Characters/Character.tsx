@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Character.module.scss";
-import { Character } from "../../apiHooks/marvelCharacter";
+import { Character } from "../../apiHooks/marvelCharacterTypes";
 
 interface CharacterProps {
   value: Character;
@@ -31,7 +31,7 @@ export default (props: CharacterProps) => {
           alt="thumb"
           className={styles.thumb}
           src={
-            props.value.thumbnail.path + "." + props.value.thumbnail.extension
+            props.value.thumbnail?.path + "." + props.value.thumbnail?.extension
           }
         />
       </a>

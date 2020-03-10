@@ -3,8 +3,9 @@ import { useDebounce } from "react-use";
 import { ReactComponent as Search } from "../images/search.svg";
 import styles from "./SearchBox.module.scss";
 
-interface SearchBoxProps {
+export interface SearchBoxProps {
   onChange: (filter: string) => void;
+  debounceMs?: number;
 }
 
 export default (props: SearchBoxProps) => {
@@ -13,13 +14,17 @@ export default (props: SearchBoxProps) => {
     () => {
       if (props.onChange) props.onChange(val);
     },
-    200,
+    props.debounceMs || 200,
     [val]
   );
   return (
     <div className={styles.searchBox}>
       <Search />
-      <input type="text" onChange={e => setVal(e.currentTarget.value)} />
+      <input
+        type="text"
+        data-testid="search-input"
+        onChange={e => setVal(e.currentTarget.value)}
+      />
     </div>
   );
 };

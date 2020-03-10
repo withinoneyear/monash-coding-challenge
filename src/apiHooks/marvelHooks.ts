@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAsync } from "react-use";
 import config from "../config";
-import { CharacterDataContainer } from "./marvelCharacter";
+import { CharacterDataContainer } from "./marvelCharacterTypes";
 
 export interface PageInfo {
   offset: number;
